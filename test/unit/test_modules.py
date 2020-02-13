@@ -37,7 +37,7 @@ builtins_open = "__builtin__.open" if PY2 else "builtins.open"
 def test_s3_download(resource, url, bucket_name, key, dst, endpoint):
     region = "us-west-2"
     os.environ[_params.REGION_NAME_ENV] = region
-    if endpoint != None:
+    if endpoint is not None:
         os.environ[_params.S3_ENDPOINT_URL] = endpoint
 
     _files.s3_download(url, dst)

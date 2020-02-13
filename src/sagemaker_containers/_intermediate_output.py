@@ -141,7 +141,7 @@ def start_sync(
     """
     if not s3_output_location or os.path.exists(intermediate_path):
         logger.debug("Could not initialize intermediate folder sync to s3.")
-        return
+        return None
 
     # create intermediate and intermediate_tmp directories
     os.makedirs(intermediate_path)
@@ -152,7 +152,7 @@ def start_sync(
     url = urlparse(s3_output_location)
     if url.scheme == "file":
         logger.debug("Local directory is used for output. No need to sync any intermediate output.")
-        return
+        return None
     elif url.scheme != "s3":
         raise ValueError("Expecting 's3' scheme, got: %s in %s" % (url.scheme, url))
 
